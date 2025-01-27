@@ -1,75 +1,58 @@
-#include <stdio.h>
-
-void clearScreen() {
-    // This function clears the screen depending on the OS
-    #ifdef _WIN32
-        system("cls");  // For Windows
-    #else
-        system("clear");  // For Linux/Unix/Mac
-    #endif
-}
-
-void displayMenu() {
-    printf("Calculator Menu:\n");
-    printf("1. Add\n");
-    printf("2. Subtract\n");
-    printf("3. Multiply\n");
-    printf("4. Divide\n");
-    printf("5. Clear\n");
-    printf("6. Exit\n");
-    printf("Enter your choice: ");
-}
+nclude <stdio.h>
+#include <stdlib.h> // For system("clear")
 
 int main() {
+    char operator, choice;
     double num1, num2, result;
-    int choice;
 
-    while (1) {
-        displayMenu();
-        scanf("%d", &choice);
+    do {
+        // Clear the screen for a fresh start
+        system("clear"); // Use "cls" for Windows systems
 
-        if (choice == 6) {
-            printf("Exiting program.\n");
-            break;
-        }
+        // Display menu
+        printf("Simple Calculator\n");
+        printf("-----------------\n");
+        printf("Enter an operator (+, -, *, /): ");
+        scanf(" %c", &operator);
 
-        if (choice == 5) {
-            clearScreen();
-            printf("Calculator cleared.\n");
-            continue;
-        }
+        // Input numbers
+        printf("Enter two numbers: ");
+        scanf("%lf %lf", &num1, &num2);
 
-        printf("Enter first number: ");
-        scanf("%lf", &num1);
-
-        printf("Enter second number: ");
-        scanf("%lf", &num2);
-
-        switch (choice) {
-            case 1:
+        // Perform operation based on operator
+        switch (operator) {
+            case '+':
                 result = num1 + num2;
-                printf("Result: %.2lf\n", result);
+                printf("%.2lf + %.2lf = %.2lf\n", num1, num2, result);
                 break;
-            case 2:
+            case '-':
                 result = num1 - num2;
-                printf("Result: %.2lf\n", result);
+                printf("%.2lf - %.2lf = %.2lf\n", num1, num2, result);
                 break;
-            case 3:
+            case '*':
                 result = num1 * num2;
-                printf("Result: %.2lf\n", result);
+                printf("%.2lf * %.2lf = %.2lf\n", num1, num2, result);
                 break;
-            case 4:
+            case '/':
                 if (num2 != 0) {
                     result = num1 / num2;
-                    printf("Result: %.2lf\n", result);
+                    printf("%.2lf / %.2lf = %.2lf\n", num1, num2, result);
                 } else {
-                    printf("Error! Division by zero.\n");
+                    printf("Error: Division by zero is not allowed.\n");
                 }
                 break;
             default:
-                printf("Invalid choice! Try again.\n");
+                printf("Error: Invalid operator.\n");
+                break;
         }
-    }
+
+        // Ask if the user wants to perform another calculation
+        printf("\nDo you want to perform another calculation? (y/n): ");
+        scanf(" %c", &choice);
+
+    } while (choice == 'y' || choice == 'Y');
+
+    printf("Thank you for using the calculator. Goodbye!\n");
 
     return 0;
 }
