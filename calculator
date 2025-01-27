@@ -1,4 +1,3 @@
-nclude <stdio.h>
 #include <stdlib.h> // For system("clear")
 
 int main() {
