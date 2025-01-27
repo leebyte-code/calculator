@@ -1,0 +1,75 @@
+#include <stdio.h>
+
+void clearScreen() {
+    // This function clears the screen depending on the OS
+    #ifdef _WIN32
+        system("cls");  // For Windows
+    #else
+        system("clear");  // For Linux/Unix/Mac
+    #endif
+}
+
+void displayMenu() {
+    printf("Calculator Menu:\n");
+    printf("1. Add\n");
+    printf("2. Subtract\n");
+    printf("3. Multiply\n");
+    printf("4. Divide\n");
+    printf("5. Clear\n");
+    printf("6. Exit\n");
+    printf("Enter your choice: ");
+}
+
+int main() {
+    double num1, num2, result;
+    int choice;
+
+    while (1) {
+        displayMenu();
+        scanf("%d", &choice);
+
+        if (choice == 6) {
+            printf("Exiting program.\n");
+            break;
+        }
+
+        if (choice == 5) {
+            clearScreen();
+            printf("Calculator cleared.\n");
+            continue;
+        }
+
+        printf("Enter first number: ");
+        scanf("%lf", &num1);
+
+        printf("Enter second number: ");
+        scanf("%lf", &num2);
+
+        switch (choice) {
+            case 1:
+                result = num1 + num2;
+                printf("Result: %.2lf\n", result);
+                break;
+            case 2:
+                result = num1 - num2;
+                printf("Result: %.2lf\n", result);
+                break;
+            case 3:
+                result = num1 * num2;
+                printf("Result: %.2lf\n", result);
+                break;
+            case 4:
+                if (num2 != 0) {
+                    result = num1 / num2;
+                    printf("Result: %.2lf\n", result);
+                } else {
+                    printf("Error! Division by zero.\n");
+                }
+                break;
+            default:
+                printf("Invalid choice! Try again.\n");
+        }
+    }
+
+    return 0;
+}
