@@ -1,5 +1,4 @@
-#include <stdlib.h> // For system("clear")
-
+#include <stdlib.h>
 int main() {
     char operator, choice;
     double num1, num2, result;
